@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var routesInstrument = require('./routes/routesInstrument');
+var routesScore = require('./routes/routesScore')
 var app = express();
 
 //CORS Middleware
@@ -27,6 +28,7 @@ app.get('/', function(req, res) {
     res.send('Ruta equivocada');
 });
 app.use('/api/instrument', routesInstrument);
+app.use('/api/score', routesScore);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
