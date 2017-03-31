@@ -1,31 +1,87 @@
-var express = require("express");
-// var router = express.Router();
-var bookRouter = express.Router();
-var sql = require('mssql');
-/*
-var config = {
-    server: 'rpsudeadatabase.crximte8q0u2.us-west-2.rds.amazonaws.com', 
-    database: 'rpsudeadatabase',
-    user: 'rpsudea',
-    password: 'rpsudea123',
-    port: 3306
-}
+var express = require('express');
+var router = express.Router();
+var Instrument = require('../queries/queriesInstrument');
 
+router.get('/:id?', function(req, res, next) {
 
-var dbInstrument = require('../queries/queriesInstrument');
-router.get('/', function(req,res){
-    console.log('asdfasdjfalkñsdjfalkdsjñfas')
-    res.send(dbInstrument.getUser());
+    if (req.params.id) {
+
+        /*    Task.getTaskById(req.params.id,function(err,rows){
+
+                if(err)
+                {
+                    res.json(err);
+                }
+                else{
+                    res.json(rows);
+                }
+            });*/
+    } else {
+
+        Instrument.getAllUsers(function(err, rows) {
+
+            if (err) {
+                res.json(err);
+            } else {
+                res.json(rows);
+            }
+
+        });
+    }
 });
+/*router.post('/',function(req,res,next){
 
-module.exports = router;*/
+        Task.addTask(req.body,function(err,count){
 
-var router = function(){
-    bookRouter.route('/')
-    .get(function(req, res) {
-        var request = new sql.Request();
-        request.query('select usuario, cedula from instrumento', function(err, recordset){
-            console.log(recordset);
-        })
+            //console.log(req.body);
+            if(err)
+            {
+                res.json(err);
+            }
+            else{
+                    res.json(req.body);//or return count for 1 & 0
+            }
+        });
+});
+ router.post('/:id',function(req,res,next){
+  Task.deleteAll(req.body,function(err,count){
+    if(err)
+    {
+      res.json(err);
+    }
+    else
+    {
+      res.json(count);
+    }
+  });
+});
+router.delete('/:id',function(req,res,next){
+
+        Task.deleteTask(req.params.id,function(err,count){
+
+            if(err)
+            {
+                res.json(err);
+            }
+            else
+            {
+                res.json(count);
+            }
+
+        });
+});
+router.put('/:id',function(req,res,next){
+
+    Task.updateTask(req.params.id,req.body,function(err,rows){
+
+        if(err)
+        {
+            res.json(err);
+        }
+        else
+        {
+            res.json(rows);
+        }
     });
-}
+});*/
+module.exports = router;

@@ -1,52 +1,34 @@
-var sql = require('mssql');
+var db = require('../dbconnection');
 
-var config = {
-    server: 'rpsudeadatabase.crximte8q0u2.us-west-2.rds.amazonaws.com', 
-    database: 'rpsudeadatabase',
-    user: 'rpsudea',
-    password: 'rpsudea123',
-    port: 3306
-}
+var instrument = {
 
-function getUser(){
-    console.log('asssssssssssssssssssssssss')
-    sql.Connection.connect().then(function(){
-         new sql.Request()
-    .query('select usuario, cedula from instrumento').then(function(recordset) {
-        return recordset
-        console.dir(recordset);
-    }).catch(function(err) {
-        // ... error checks 
-    });
- 
-    // Stored Procedure 
-    
-   /* new sql.Request()
-    .input('input_parameter', sql.Int, value)
-    .output('output_parameter', sql.VarChar(50))
-    .execute('procedure_name').then(function(recordsets) {
-        console.dir(recordsets);
-    }).catch(function(err) {
-        // ... error checks 
-    });*/
-    }).catch(function(err) {
-    // ... error checks 
-    });
-    /*var conn = new sql.Connection(config);
-    
-    conn.connect().then(function () {
-        var req = new sql.Request(conn);
-        req.query("SELECT usuario, cedula FROM instrumento").then(function (recordset) {
-            console.log(recordset);
-            return recordset;
-            conn.close();
-        })
-        .catch(function (err) {
-            console.log(err);
-            conn.close();
-        });        
-    })
-    .catch(function (err) {
-        console.log(err);
-    });*/
-}
+    getAllUsers: function(callback) {
+        return db.query("Select usuario, cedula from instrumento", callback);
+    },
+    /*getUserById:function(id,callback){
+
+        return db.query("select * from instrumento where Id=?",[id],callback);
+    },
+    addUser:function(User,callback){
+       console.log("inside service");
+       console.log(User.Id);
+    return db.query("Insert into instrumento values(?,?,?)",[User.Id,User.Title,User.Status],callback);
+    //return db.query("insert into instrumento(Id,Title,Status) values(?,?,?)",[User.Id,User.Title,User.Status],callback);
+    },
+    deleteUser:function(id,callback){
+        return db.query("delete from instrumento where Id=?",[id],callback);
+    },
+    updateUser:function(id,User,callback){
+        return  db.query("update instrumento set Title=?,Status=? where Id=?",[User.Title,User.Status,id],callback);
+    },
+    deleteAll:function(item,callback){
+
+    var delarr=[];
+       for(i=0;i<item.length;i++){
+
+           delarr[i]=item[i].Id;
+       }
+       return db.query("delete from instrumento where Id in (?)",[delarr],callback);
+    }*/
+};
+module.exports = instrument;
