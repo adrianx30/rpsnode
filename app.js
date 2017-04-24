@@ -2,7 +2,9 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var routesInstrument = require('./routes/routesInstrument');
-var routesScore = require('./routes/routesScore')
+var routesScore = require('./routes/routesScore');
+var routesUser = require('./routes/routesUser');
+var routesWeek = require('./routes/routesWeek');
 var app = express();
 
 //CORS Middleware
@@ -29,6 +31,8 @@ app.get('/', function(req, res) {
 });
 app.use('/api/instrument', routesInstrument);
 app.use('/api/score', routesScore);
+app.use('/api/user', routesUser);
+app.use('/api/week', routesWeek);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
