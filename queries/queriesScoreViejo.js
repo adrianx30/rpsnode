@@ -3,21 +3,25 @@ var db = require('../dbconnection');
 var score = {
 
     getScoresWeek: function(week, callback) {
-        return db.query("Select usuario.username, puntaje.score from usuario, puntaje where puntaje.idSemana=?",[week], callback);
+        var aux = "semana" + week;
+        return db.query("Select username, "+ aux + " from puntajes", callback);
     },
 
-    addUser:function(Data,callback){
-        // return db.query("Insert into instrumento values(?,?,?)",[Data.Id,Data.Title,Data.Status],callback);
-        return db.query("insert into puntaje(iduser,idsemana) values(?,?)",[Data.iduser,Data.idsemana],callback);
+    addUser:function(User,callback){
+       console.log("inside service");
+       console.log(User.id);
+        // return db.query("Insert into instrumento values(?,?,?)",[User.Id,User.Title,User.Status],callback);
+        return db.query("insert into puntajes(userID,username) values(?,?)",[User.id,User.name],callback);
     },
 
     updateScore:function(week,User,callback){
-        return  db.query("update puntaje set score=? where iduser=? and idsemana=?",[User.puntaje,User.iduser,week],callback);
+        var aux = "semana" + week;
+        return  db.query("update puntajes set "+ aux + "=? where userID=?",[User.puntaje,User.userID],callback);
     },
-    getUserById:function(id,callback){
-        return db.query("select score from puntaje where iduser=?",[id],callback);
+    /*getUserById:function(id,callback){
+
+        return db.query("select * from instrumento where Id=?",[id],callback);
     },
-    /*
     addUser:function(User,callback){
        console.log("inside service");
        console.log(User.Id);
