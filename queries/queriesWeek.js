@@ -3,24 +3,24 @@ var db = require('../dbconnection');
 var week = {
 //DATE - format YYYY-MM-DD
     getAllWeeks: function(callback) {
-        return db.query("Select * from semana", callback);
+        return db.query("Select * from Semana", callback);
     },
     getWeekById:function(id,callback){
 
-        return db.query("select * from semana where Id=?",[id],callback);
+        return db.query("select * from Semana where Id=?",[id],callback);
     },
     getWeekByBegining:function(begin,callback){
 
-        return db.query("select * from semana where inicio=?",[begin],callback);
+        return db.query("select * from Semana where inicio=?",[begin],callback);
     },
     getWeekByFinal:function(final,callback){
 
-        return db.query("select * from semana where final=?",[final],callback);
+        return db.query("select * from Semana where final=?",[final],callback);
     },
     
     addWeek:function(Week,callback){
-    // return db.query("Insert into semana values(?,?)",[Week.inicio,Week.final],callback);
-    return db.query("insert into semana(inicio,final) values(?,?)",[Week.inicio,Week.final],callback);
+    // return db.query("Insert into Semana values(?,?)",[Week.inicio,Week.final],callback);
+    return db.query("insert into Semana(inicio,final) values(?,?)",[Week.inicio,Week.final],callback);
     },
 /*
     deleteUser:function(id,callback){
