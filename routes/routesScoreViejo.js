@@ -1,29 +1,34 @@
 var express = require('express');
 var router = express.Router();
-var Score = require('../queries/queriesScore');
+var Score = require('../queries/queriesScoreViejo');
 
-router.get('/week/:id', function(req, res, next) {
+router.get('/week/:id?', function(req, res, next) {
 
-    Score.getScoresWeek(req.params.id, function(err, rows) {
-        if (err) {
-            res.json(err);
-        } else {
-            res.json(rows);
-        }
+    if (req.params.id) {
 
-    });
-});
+        Score.getScoresWeek(req.params.id, function(err, rows) {
 
-router.get('/get/user/:id', function(req, res, next) {
+            if (err) {
+                res.json(err);
+            } else {
+                res.json(rows);
+            }
 
-    Score.getUserById(req.params.id, function(err, rows) {
-        if (err) {
-            res.json(err);
-        } else {
-            res.json(rows);
-        }
+        });
+        /*    Task.getTaskById(req.params.id,function(err,rows){
 
-    });
+                if(err)
+                {
+                    res.json(err);
+                }
+                else{
+                    res.json(rows);
+                }
+            });*/
+    } else {
+
+
+    }
 });
 
 router.post('/add/user',function(req,res,next){

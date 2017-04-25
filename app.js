@@ -2,7 +2,12 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var routesInstrument = require('./routes/routesInstrument');
+var routesScoreViejo = require('./routes/routesScoreViejo');
 var routesScore = require('./routes/routesScore')
+var routesUser = require('./routes/routesUser');
+var routesWeek = require('./routes/routesWeek');
+var routesQuestion = require('./routes/routesQuestion');
+var routesNews = require('./routes/routesNews');
 var app = express();
 
 //CORS Middleware
@@ -28,7 +33,12 @@ app.get('/', function(req, res) {
     res.send('Ruta equivocada');
 });
 app.use('/api/instrument', routesInstrument);
-app.use('/api/score', routesScore);
+app.use('/api/scoreViejo', routesScoreViejo);
+app.use('/api/score', routesScoreViejo);
+app.use('/api/user', routesUser);
+app.use('/api/week', routesWeek);
+app.use('/api/question', routesQuestion);
+app.use('/api/news', routesNews);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
