@@ -34,7 +34,7 @@ app.get('/', function(req, res) {
 });
 app.use('/api/instrument', routesInstrument);
 app.use('/api/scoreViejo', routesScoreViejo);
-app.use('/api/score', routesScoreViejo);
+app.use('/api/score', routesScore);
 app.use('/api/user', routesUser);
 app.use('/api/week', routesWeek);
 app.use('/api/question', routesQuestion);
