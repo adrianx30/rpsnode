@@ -6,8 +6,10 @@ router.get('/week/:id', function(req, res, next) {
 
     Score.getScoresWeek(req.params.id, function(err, rows) {
         if (err) {
+            console.log('asdf');  
             res.json(err);
         } else {
+            console.log('se supone que no dio error');  
             res.json(rows);
         }
 
