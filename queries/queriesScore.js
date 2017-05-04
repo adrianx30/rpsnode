@@ -3,7 +3,8 @@ var db = require('../dbconnection');
 var score = {
 
     getScoresWeek: function(week, callback) {
-        return db.query("Select usuario.username, puntaje.score from usuario, puntaje where puntaje.idSemana=?",[week], callback);
+        // return db.query("Select usuario.username, puntaje.score from usuario, puntaje where puntaje.idSemana=?",[week], callback);
+        return db.query("Select usuario.username, puntaje.score from usuario, puntaje where usuario.id=puntaje.iduser and puntaje.idSemana=?",[week], callback);
     },
 
     addUser:function(Data,callback){
