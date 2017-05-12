@@ -14,10 +14,11 @@ var news = {
     // return db.query("Insert into usuario values(?,?,?)",[Data.Id,Data.Title,Data.Status],callback);
     return db.query("insert into news(new) values(?)",[Data.new],callback);
     },
-/*
-    deleteUser:function(id,callback){
-        return db.query("delete from instrumento where Id=?",[id],callback);
+
+    deleteNews:function(id,callback){
+        return db.query("delete from news where Id=?",[id],callback);
     },
+    /*
     updateUser:function(id,User,callback){
         return  db.query("update instrumento set Title=?,Status=? where Id=?",[User.Title,User.Status,id],callback);
     },

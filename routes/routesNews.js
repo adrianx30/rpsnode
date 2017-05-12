@@ -43,6 +43,21 @@ router.post('/',function(req,res,next){
             }
         });
 });
+router.delete('/delete/:id',function(req,res,next){
+
+        News.deleteNews(req.params.id,function(err,count){
+
+            if(err)
+            {
+                res.json(err);
+            }
+            else
+            {
+                res.json(count);
+            }
+
+        });
+});
 /*
  router.post('/:id',function(req,res,next){
   Task.deleteAll(req.body,function(err,count){
@@ -56,21 +71,7 @@ router.post('/',function(req,res,next){
     }
   });
 });
-router.delete('/:id',function(req,res,next){
 
-        Task.deleteTask(req.params.id,function(err,count){
-
-            if(err)
-            {
-                res.json(err);
-            }
-            else
-            {
-                res.json(count);
-            }
-
-        });
-});
 router.put('/:id',function(req,res,next){
 
     Task.updateTask(req.params.id,req.body,function(err,rows){

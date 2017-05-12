@@ -15,13 +15,14 @@ var question = {
     },*/
     
     addQuestion:function(Question,callback){
-    // return db.query("Insert into pregunta values(?,?,?)",[Question.Id,Question.Title,Question.Status],callback);
-    return db.query("insert into preguntas(pregunta,hint,respuesta) values(?,?,?)",[Question.pregunta,Question.hint,Question.respuesta],callback);
+        // return db.query("Insert into pregunta values(?,?,?)",[Question.Id,Question.Title,Question.Status],callback);
+        return db.query("insert into preguntas(pregunta,hint,respuesta) values(?,?,?)",[Question.pregunta,Question.hint,Question.respuesta],callback);
+    },
+    deleteQuestion:function(id,callback){
+            return db.query("delete from preguntas where Id=?",[id],callback);
     },
 /*
-    deleteUser:function(id,callback){
-        return db.query("delete from instrumento where Id=?",[id],callback);
-    },
+    
     updateUser:function(id,User,callback){
         return  db.query("update instrumento set Title=?,Status=? where Id=?",[User.Title,User.Status,id],callback);
     },
