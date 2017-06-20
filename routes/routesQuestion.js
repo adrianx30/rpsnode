@@ -2,23 +2,22 @@ var express = require('express');
 var router = express.Router();
 var Question = require('../queries/queriesQuestion');
 
-router.get('/:id?', function(req, res, next) {
+router.get('/:id?', function (req, res, next) {
 
     if (req.params.id) {
 
-            Question.getQuestionById(req.params.id,function(err,rows){
+        Question.getQuestionById(req.params.id, function (err, rows) {
 
-                if(err)
-                {
-                    res.json(err);
-                }
-                else{
-                    res.json(rows);
-                }
-            });
+            if (err) {
+                res.json(err);
+            }
+            else {
+                res.json(rows);
+            }
+        });
     } else {
 
-        Question.getAllQuestion(function(err, rows) {
+        Question.getAllQuestion(function (err, rows) {
 
             if (err) {
                 res.json(err);
@@ -29,61 +28,30 @@ router.get('/:id?', function(req, res, next) {
         });
     }
 });
-router.post('/',function(req,res,next){
+router.post('/', function (req, res, next) {
 
-        Question.addQuestion(req.body,function(err,count){
+    Question.addQuestion(req.body, function (err, count) {
 
-            //console.log(req.body);
-            if(err)
-            {
-                res.json(err);
-            }
-            else{
-                    res.json(req.body);//or return count for 1 & 0
-            }
-        });
-});
-router.delete('/delete/:id',function(req,res,next){
-
-        Question.deleteQuestion(req.params.id,function(err,count){
-
-            if(err)
-            {
-                res.json(err);
-            }
-            else
-            {
-                res.json(count);
-            }
-
-        });
-});
-/*
- router.post('/:id',function(req,res,next){
-  Task.deleteAll(req.body,function(err,count){
-    if(err)
-    {
-      res.json(err);
-    }
-    else
-    {
-      res.json(count);
-    }
-  });
-});
-
-router.put('/:id',function(req,res,next){
-
-    Task.updateTask(req.params.id,req.body,function(err,rows){
-
-        if(err)
-        {
+        if (err) {
             res.json(err);
         }
-        else
-        {
-            res.json(rows);
+        else {
+            res.json(req.body);
         }
     });
-});*/
+});
+router.delete('/delete/:id', function (req, res, next) {
+
+    Question.deleteQuestion(req.params.id, function (err, count) {
+
+        if (err) {
+            res.json(err);
+        }
+        else {
+            res.json(count);
+        }
+
+    });
+});
+
 module.exports = router;
